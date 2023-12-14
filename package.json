@@ -1,0 +1,19 @@
+{
+  "name": "joblistingsfiltering",
+  "version": "1.0.0",
+  "description": "Job Listings Filtering",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nataliavrs/job-listings-filter.git"
+  },
+  "author": "Natalia Veras",
+  "license": "MIT",
+  "dependencies": {
+    "parcel": "^2.10.2"
+  }
+}
