@@ -1,5 +1,5 @@
 class FilterBar {
-  _parent = document.querySelector("header");
+  _parent = document.querySelector(".header");
 
   generateMarkup() {
     return `

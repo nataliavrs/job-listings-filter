@@ -3,7 +3,7 @@
     {
       "id": 1,
       "company": "Photosnap",
-      "logo": "./images/photosnap.svg",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Apple_logo_grey.svg/1724px-Apple_logo_grey.svg.png",
       "new": true,
       "featured": true,
       "position": "Senior Frontend Developer",
@@ -18,7 +18,7 @@
     {
       "id": 2,
       "company": "Manage",
-      "logo": "./images/manage.svg",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/NIVEA_logo_2021.svg/2048px-NIVEA_logo_2021.svg.png",
       "new": true,
       "featured": true,
       "position": "Fullstack Developer",
@@ -33,7 +33,7 @@
     {
       "id": 3,
       "company": "Account",
-      "logo": "./images/account.svg",
+      "logo": "https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Amazon-512.png",
       "new": true,
       "featured": false,
       "position": "Junior Frontend Developer",
@@ -48,7 +48,7 @@
     {
       "id": 4,
       "company": "MyHome",
-      "logo": "./images/myhome.svg",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Eurospin_New_Logo.svg/640px-Eurospin_New_Logo.svg.png",
       "new": false,
       "featured": false,
       "position": "Junior Frontend Developer",
@@ -63,7 +63,7 @@
     {
       "id": 5,
       "company": "Loop Studios",
-      "logo": "./images/loop-studios.svg",
+      "logo": "https://chisiamo.conad.it/assets/icons/logo.png?_u=d53dae8f4ade42238512b292961700fadeb54069",
       "new": false,
       "featured": false,
       "position": "Software Engineer",
@@ -78,7 +78,7 @@
     {
       "id": 6,
       "company": "FaceIt",
-      "logo": "./images/faceit.svg",
+      "logo": "https://www.sanbenedetto.it/build/img/img_share_generica.jpg",
       "new": false,
       "featured": false,
       "position": "Junior Backend Developer",
@@ -93,7 +93,7 @@
     {
       "id": 7,
       "company": "Shortly",
-      "logo": "./images/shortly.svg",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Apple_logo_grey.svg/1724px-Apple_logo_grey.svg.png",
       "new": false,
       "featured": false,
       "position": "Junior Developer",
@@ -108,7 +108,7 @@
     {
       "id": 8,
       "company": "Insure",
-      "logo": "./images/insure.svg",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/NIVEA_logo_2021.svg/2048px-NIVEA_logo_2021.svg.png",
       "new": false,
       "featured": false,
       "position": "Junior Frontend Developer",
@@ -123,7 +123,7 @@
     {
       "id": 9,
       "company": "Eyecam Co.",
-      "logo": "./images/eyecam-co.svg",
+      "logo": "https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Amazon-512.png",
       "new": false,
       "featured": false,
       "position": "Full Stack Engineer",
@@ -138,7 +138,7 @@
     {
       "id": 10,
       "company": "The Air Filter Company",
-      "logo": "./images/the-air-filter-company.svg",
+      "logo": "https://chisiamo.conad.it/assets/icons/logo.png?_u=d53dae8f4ade42238512b292961700fadeb54069",
       "new": false,
       "featured": false,
       "position": "Front-end Dev",

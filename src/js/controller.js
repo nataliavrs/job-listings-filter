@@ -8,6 +8,9 @@ export class Controller {
 
   controlJobs() {
     const jobs = this.model.state.jobs;
+    jobs.forEach((job) => {
+      this.jobView.render(job);
+    });
     console.log(jobs);
   }
 

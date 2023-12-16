@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.job {
+  background-color: lightgray;
+  margin: 0.5rem 0;
+}
+
+.job__info {
+  display: flex;
+  align-items: center;
+}
+
+.job__details {
+  align-self: center;
+}
+
+img {
+  height: 88px;
+}
