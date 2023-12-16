@@ -4,15 +4,15 @@ export class Controller {
     this.jobView = jobView;
     this.skillView = skillView;
     this.filterBarView = filterBarView;
-    this.loadJobs();
   }
 
-  loadJobs() {
+  controlJobs() {
     const jobs = this.model.state.jobs;
-    // console.log(jobs);
+    console.log(jobs);
   }
 
   async initApp() {
     await this.model.fetchData();
+    this.controlJobs();
   }
 }

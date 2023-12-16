@@ -1,5 +1,3 @@
-import data from "./data.json";
-
 class Model {
   state = {
     jobs: [],
@@ -7,12 +5,9 @@ class Model {
 
   async fetchData() {
     try {
-      const response = await fetch(data);
-
+      const response = await fetch("http://localhost:3001/jobs");
       const data = await response.json();
-      this.state.jobs = data.data;
-      console.log(data);
-      console.log(this.state);
+      this.state.jobs = data;
     } catch (error) {
       console.log(error);
     }
