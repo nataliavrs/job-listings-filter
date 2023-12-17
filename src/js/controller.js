@@ -6,12 +6,22 @@ export class Controller {
     this.filterBarView = filterBarView;
   }
 
-  controlJobs() {
+  async controlJobs() {
+    await this.model.getJobs();
     const jobs = this.model.state.jobs;
+    if (!jobs?.length) {
+      alert("No jobs retrieved");
+      return;
+    }
+
     jobs.forEach((job) => {
-      this.jobView.render(job);
+      const jobHTML = this.jobView.render(job);
+      const skillsHTML = job.skills.forEach((skill) =>
+        this.skillView.generateMarkup(skill, false)
+      );
+      const newHTML = jobHTML;
+      this.jobView.update(newHTML);
     });
-    console.log(jobs);
   }
 
   async initApp() {

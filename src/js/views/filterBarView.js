@@ -4,9 +4,9 @@ class FilterBar {
   generateMarkup() {
     return `
         <div class="filter-bar">
-        <div class="filter-bar__skills">
-        </div>
-            <div class="filter-bar__clear-btn">Clear</div>
+          <div class="filter-bar__skills">
+          </div>
+          <div class="filter-bar__clear-btn">Clear</div>
         </div>
         `;
   }

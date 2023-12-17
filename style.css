@@ -3,9 +3,22 @@
   margin: 0;
 }
 
+main {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 .job {
   background-color: lightgray;
-  margin: 0.5rem 0;
+  margin: 0.7rem 0;
+  border-radius: 0.2rem;
+  width: 80%;
+  padding: 1.5rem;
+}
+
+.job__logo {
+  margin-right: 2rem;
 }
 
 .job__info {
@@ -15,6 +28,10 @@
 
 .job__details {
   align-self: center;
+}
+
+.job__secondary-details {
+  margin-top: 1rem;
 }
 
 img {
