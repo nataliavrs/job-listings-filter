@@ -3,6 +3,11 @@
   margin: 0;
 }
 
+body {
+  font-family: "League Spartan", sans-serif;
+  font-family: "Rubik", sans-serif;
+}
+
 main {
   display: flex;
   align-items: center;
@@ -15,10 +20,17 @@ main {
   border-radius: 0.2rem;
   width: 80%;
   padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .job__logo {
   margin-right: 2rem;
+}
+
+.job__logo img {
+  height: 88px;
 }
 
 .job__info {
@@ -34,6 +46,10 @@ main {
   margin-top: 1rem;
 }
 
-img {
-  height: 88px;
+.job__skills {
+  display: flex;
+}
+
+.skill {
+  margin: 0.5rem;
 }

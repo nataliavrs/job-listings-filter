@@ -1,34 +1,27 @@
+import { END_POINTS } from "./settings.js";
+
 class Model {
   state = {
-    data: [],
     jobs: [],
   };
 
-  async fetchData() {
-    try {
-      const response = await fetch("http://localhost:3001/jobs");
-      const data = await response.json();
-      this.state.data = data;
-    } catch (error) {
-      console.log(error);
-    }
+  async fetchData(url) {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
   }
 
   async getJobs() {
-    await this.fetchData();
-
-    const jobs = this.state.data.map((job) => ({
-      ...job,
-      skills: [].concat(
-        job.role,
-        job.tools,
-        job.languages,
-        job.position,
-        job.level
-      ),
-    }));
-
-    this.state.jobs = jobs;
+    try {
+      const jobs = await this.fetchData(END_POINTS.jobs);
+      const mappedJobs = jobs.map((job) => ({
+        ...job,
+        skills: [].concat(job.role, job.tools, job.languages, job.level),
+      }));
+      this.state.jobs = mappedJobs;
+    } catch (error) {
+      alert("Error retrieving jobs", error);
+    }
   }
 }
 

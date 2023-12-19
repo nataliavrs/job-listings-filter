@@ -4,5 +4,16 @@ export class View {
     this._parent.insertAdjacentHTML("beforeEnd", markup);
   }
 
-  update(data) {}
+  generateSkillMarkup(skill, hasRemoveButton) {
+    return `
+            <div class="skill">
+                <div class="skill__title">${skill}</div>
+                ${
+                  hasRemoveButton
+                    ? '<div class="skill__remove-btn">X</div>'
+                    : ""
+                }
+            </div>
+          `;
+  }
 }

@@ -1,4 +1,5 @@
 import { View } from "./View.js";
+
 class JobView extends View {
   _parent = document.querySelector(".main");
 
@@ -34,6 +35,9 @@ class JobView extends View {
         </div>
   
         <div class="job__skills">          
+          ${job.skills
+            .map((skill) => this.generateSkillMarkup(skill, false))
+            .join("")}
         </div>
       </div>
     `;
