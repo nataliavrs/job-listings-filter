@@ -3,9 +3,10 @@ import { View } from "./View.js";
 class JobView extends View {
   _parent = document.querySelector(".main");
 
-  generateMarkup(job) {
-    return `
-      <div class="job">
+  generateMarkup(jobs) {
+    return jobs
+      .map((job) => {
+        return `<div class="job">
         <div class="job__info">
           <div class="job__logo">
             <img src="${job?.logo}" alt="Company Logo" />
@@ -39,8 +40,9 @@ class JobView extends View {
             .map((skill, id) => this.generateSkillMarkup(id, skill, false))
             .join("")}
         </div>
-      </div>
-    `;
+      </div>`;
+      })
+      .join("");
   }
 
   addHandlerRender(handler) {

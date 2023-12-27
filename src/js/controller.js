@@ -9,21 +9,17 @@ export class Controller {
   controlJobs() {
     const jobs = this.model.state.jobs;
     if (!jobs.length) alert("No jobs in state");
-    jobs.forEach((job) => {
-      this.jobView.render(job);
-    });
+    this.jobView.render(jobs);
   }
 
   controlSkills(skillTitle) {
+    // Update jobs (in state)
     const filteredJobs = this.model.state.jobs.filter((job) =>
       job.skills.find((skill) => skill === skillTitle)
     );
-
-    this.jobView.update();
-
-    filteredJobs.forEach((job) => {
-      this.jobView.render(job);
-    });
+    this.model.state.filteredJobs = filteredJobs;
+    // Update job's view
+    this.jobView.update(this.model.state.filteredJobs);
   }
 
   async initApp() {

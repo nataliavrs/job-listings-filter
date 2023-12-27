@@ -17,7 +17,25 @@ export class View {
           `;
   }
 
-  update() {
-    this._parent.innerHTML = "";
+  update(data) {
+    const newMarkup = this.generateMarkup(data);
+    const newDOM = document.createRange().createContextualFragment(newMarkup);
+    const newElements = Array.from(newDOM.querySelectorAll("*"));
+    const curElements = Array.from(this._parent.querySelectorAll("*"));
+
+    // TODO come lo voglio filtrare?
+    newElements.forEach((newEl, i) => {
+      const curEl = curElements[i];
+      // Updates changed TEXT
+      // if (!newEl.isEqualNode(curEl)) {
+      //   curEl.textContent = newEl.textContent;
+      // }
+
+      // Updates changed ATTRIBUES
+      // if (!newEl.isEqualNode(curEl))
+      //   Array.from(newEl.attributes).forEach((attr) =>
+      //     curEl.setAttribute(attr.name, attr.value)
+      //   );
+    });
   }
 }
