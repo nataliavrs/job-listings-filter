@@ -4,9 +4,9 @@ export class View {
     this._parent.insertAdjacentHTML("beforeEnd", markup);
   }
 
-  generateSkillMarkup(skill, hasRemoveButton) {
+  generateSkillMarkup(id, skill, hasRemoveButton) {
     return `
-            <div class="skill">
+            <div class="skill" data-id="${id}">
                 <div class="skill__title">${skill}</div>
                 ${
                   hasRemoveButton
@@ -15,5 +15,9 @@ export class View {
                 }
             </div>
           `;
+  }
+
+  update() {
+    this._parent.innerHTML = "";
   }
 }

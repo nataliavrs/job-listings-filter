@@ -3,6 +3,8 @@ import { END_POINTS } from "./settings.js";
 class Model {
   state = {
     jobs: [],
+    filteredJobs: [],
+    filters: [],
   };
 
   async fetchData(url) {

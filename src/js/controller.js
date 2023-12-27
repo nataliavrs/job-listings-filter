@@ -14,8 +14,21 @@ export class Controller {
     });
   }
 
+  controlSkills(skillTitle) {
+    const filteredJobs = this.model.state.jobs.filter((job) =>
+      job.skills.find((skill) => skill === skillTitle)
+    );
+
+    this.jobView.update();
+
+    filteredJobs.forEach((job) => {
+      this.jobView.render(job);
+    });
+  }
+
   async initApp() {
     await this.model.getJobs();
     this.controlJobs();
+    this.jobView.addHandlerRender(this.controlSkills.bind(this));
   }
 }
