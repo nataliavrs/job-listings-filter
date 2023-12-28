@@ -6,25 +6,25 @@ export class Controller {
     this.filterBarView = filterBarView;
   }
 
-  controlJobs() {
+  showJobs() {
     const jobs = this.model.state.jobs;
     if (!jobs.length) alert("No jobs in state");
     this.jobView.render(jobs);
   }
 
-  controlSkills(skillTitle) {
+  filterJobs(skillTitle) {
     // Update jobs (in state)
     const filteredJobs = this.model.state.jobs.filter((job) =>
       job.skills.find((skill) => skill === skillTitle)
     );
     this.model.state.filteredJobs = filteredJobs;
     // Update job's view
-    this.jobView.update(this.model.state.filteredJobs);
+    this.jobView.render(this.model.state.filteredJobs);
   }
 
   async initApp() {
     await this.model.getJobs();
-    this.controlJobs();
-    this.jobView.addHandlerRender(this.controlSkills.bind(this));
+    this.showJobs();
+    this.jobView.addHandlerRender(this.filterJobs.bind(this));
   }
 }

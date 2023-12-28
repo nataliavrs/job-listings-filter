@@ -49,14 +49,11 @@ class JobView extends View {
     const jobSkillsContainers = document.querySelectorAll(".job__skills");
     const jobSkillsContainersArray = Array.from(jobSkillsContainers);
 
-    jobSkillsContainersArray.forEach((container, containerId) =>
+    jobSkillsContainersArray.forEach((container) =>
       container.addEventListener("click", (e) => {
         if (Array.from(e.target.classList).includes("skill__title")) {
-          const selectedSkill = e.target.closest(".skill");
-          const selectedSkillId = selectedSkill.dataset;
-          const selectedSkillTitle = selectedSkill.innerText;
-          console.log(selectedSkillTitle);
-          handler(selectedSkillTitle);
+          const selectedSkill = e.target.closest(".skill").innerText;
+          handler(selectedSkill);
         }
       })
     );
