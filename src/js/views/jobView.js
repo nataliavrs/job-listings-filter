@@ -36,7 +36,7 @@ class JobView extends View {
         </div>
   
         <div class="job__skills">   
-          ${job?.skills
+          ${(job?.skills)
             .map((skill, id) => this.generateSkillMarkup(id, skill, false))
             .join("")}
         </div>
