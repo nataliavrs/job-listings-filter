@@ -1,8 +1,7 @@
 export class Controller {
-  constructor(model, jobView, skillView, filterBarView) {
+  constructor(model, jobView, filterBarView) {
     this.model = model;
     this.jobView = jobView;
-    this.skillView = skillView;
     this.filterBarView = filterBarView;
   }
 
@@ -13,11 +12,15 @@ export class Controller {
 
   filterJobs(skillFilter) {
     if (this.model.state.filters.includes(skillFilter)) return;
+    if (!this.model.state.filters.length) {
+      this.filterBarView.render(this.model.state.filters);
+    }
 
     const filteredJobs = this.model.state.jobs.filter((job) =>
       job.skills.find((skill) => skill === skillFilter)
     );
     this.model.state.filters.push(skillFilter);
+    this.filterBarView.renderFilters();
     this.jobView.clear();
     this.generateJobs(filteredJobs);
   }
