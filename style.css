@@ -53,3 +53,7 @@ main {
 .skill {
   margin: 0.5rem;
 }
+
+.skill-title {
+  cursor: pointer;
+}

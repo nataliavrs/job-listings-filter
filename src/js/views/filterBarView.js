@@ -3,8 +3,7 @@ class FilterBar extends View {
   _parent = document.querySelector(".header");
   _data;
 
-  generateMarkup(data) {
-    this._data = data;
+  generateMarkup() {
     return `
         <div class="filter-bar">
           <div class="filter-bar__filters">
@@ -14,12 +13,11 @@ class FilterBar extends View {
     `;
   }
 
-  renderFilters() {
+  renderFilters(filters) {
     const filtersContainer = this._parent.querySelector(".filter-bar__filters");
-    const filters = this._data
+    filtersContainer.innerHTML = filters
       .map((filter) => this.generateSkillMarkup(0, filter, true))
       .join("");
-    filtersContainer.innerHTML = filters;
   }
 }
 

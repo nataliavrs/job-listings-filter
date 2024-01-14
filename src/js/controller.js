@@ -11,18 +11,25 @@ export class Controller {
   }
 
   filterJobs(skillFilter) {
+    // Se filtro già esiste non ne aggiungo altro ripetuto e non rifaccio filtro
     if (this.model.state.filters.includes(skillFilter)) return;
+    // Renderizzo la barra di filtri se non l'ho già fatto
     if (!this.model.state.filters.length) {
-      this.filterBarView.render(this.model.state.filters);
+      this.filterBarView.render();
     }
-
-    const filteredJobs = this.model.state.jobs.filter((job) =>
-      job.skills.find((skill) => skill === skillFilter)
+    // Se c'è già un filtro attivo, faccio il filtro non su tutti i jobs ma sui jobs filtrati attualmente
+    const jobs = this.model.state.filters.length
+      ? this.model.state.filteredJobs
+      : this.model.state.jobs;
+    this.model.state.filteredJobs = jobs.filter((job) =>
+      job.skills.some((skill) => skill === skillFilter)
     );
+    // Renderizzo i filtri
     this.model.state.filters.push(skillFilter);
-    this.filterBarView.renderFilters();
+    this.filterBarView.renderFilters(this.model.state.filters);
+    // Renderizzo i jobs filtrati
     this.jobView.clear();
-    this.generateJobs(filteredJobs);
+    this.generateJobs(this.model.state.filteredJobs);
   }
 
   async initApp() {
