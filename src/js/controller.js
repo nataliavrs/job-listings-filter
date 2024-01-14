@@ -1,12 +1,16 @@
 export class Controller {
-  constructor(model, jobView, filterBarView) {
+  constructor(model, jobView, filterBarView, skillView) {
     this.model = model;
     this.jobView = jobView;
     this.filterBarView = filterBarView;
+    this.skillView = skillView;
   }
 
   generateJobs(jobs) {
-    this.jobView.render(jobs);
+    jobs.forEach((job) => {
+      this.jobView.render(job);
+      this.skillView.generateJobFilters(job.skills, job.id, this.clearFilter);
+    });
     this.jobView.addHandlerRender(this.filterJobs.bind(this));
   }
 
@@ -26,10 +30,15 @@ export class Controller {
     );
     // Renderizzo i filtri
     this.model.state.filters.push(skillFilter);
-    this.filterBarView.renderFilters(this.model.state.filters);
-    // Renderizzo i jobs filtrati
+    this.skillView.generateActiveFilters(this.model.state.filters);
+    this.skillView.addHandlerRender(this.clearFilter);
+    // REFACTOR Renderizzo i nuovi jobs, ma solo quelli fra i filtrati
     this.jobView.clear();
     this.generateJobs(this.model.state.filteredJobs);
+  }
+
+  clearFilter() {
+    console.log("clear me");
   }
 
   async initApp() {

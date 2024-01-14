@@ -7,17 +7,4 @@ export class View {
   clear() {
     this._parent.innerHTML = "";
   }
-
-  generateSkillMarkup(id, skill, hasRemoveButton) {
-    return `
-            <div class="skill" data-id="${id}">
-                <div class="skill__title">${skill}</div>
-                ${
-                  hasRemoveButton
-                    ? '<div class="skill__remove-btn">X</div>'
-                    : ""
-                }
-            </div>
-          `;
-  }
 }

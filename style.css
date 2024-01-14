@@ -54,6 +54,27 @@ main {
   margin: 0.5rem;
 }
 
-.skill-title {
+.job__skills > .skill > .skill__title {
   cursor: pointer;
+  display: inline;
+}
+
+.filter-bar__filters > .skill > .skill__title {
+  display: inline;
+}
+
+.skill__remove-btn {
+  display: inline;
+  cursor: pointer;
+}
+
+.filter-bar,
+.filter-bar__filters {
+  display: flex;
+}
+
+.filter-bar {
+  justify-content: space-around;
+  align-items: center;
+  font-size: 1.2rem;
 }
