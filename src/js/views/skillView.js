@@ -2,18 +2,25 @@ import { View } from "./View.js";
 class SkillView extends View {
   _data;
 
-  generateActiveFilters(filters, handler) {
+  generateActiveFilter(filter, handler) {
     const parent = document.querySelector(".filter-bar__filters");
-    parent.innerHTML = filters
-      .map((filter) => {
-        return `
-                <div class="skill">
-                    <div class="skill__title">${filter}</div>
-                    <div class="skill__remove-btn">X</div>                                   
-                </div>
-              `;
-      })
-      .join("");
+    const skillNode = document.createElement("div");
+    skillNode.className = "skill";
+
+    skillNode.innerHTML = `
+        <div class="skill__title">${filter}</div>
+        <div class="skill__remove-btn">X</div>                                   
+    `;
+
+    skillNode.addEventListener("click", (e) => {
+      if (e.target.classList.contains("skill__remove-btn")) {
+        handler(
+          e.target.parentElement.querySelector(".skill__title").innerText
+        );
+      }
+    });
+
+    parent.appendChild(skillNode);
   }
 
   generateJobFilters(skills, jobId) {
@@ -30,20 +37,6 @@ class SkillView extends View {
               `;
       })
       .join("");
-  }
-
-  addHandlerRender(handler, skillFilter) {
-    // TODO devo avere il valore del filtro su cui clicco
-    const removeBtns = document.querySelectorAll(".skill__remove-btn");
-    const removeBtnsArr = Array.from(removeBtns);
-    removeBtnsArr.forEach((btn) =>
-      btn.addEventListener("click", (e) => {
-        // if (Array.from(e.target.classList).includes("skill__title")) {
-        //   const selectedSkill = e.target.closest(".skill").innerText;
-        handler();
-        // }
-      })
-    );
   }
 }
 

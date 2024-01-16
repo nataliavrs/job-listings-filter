@@ -30,15 +30,16 @@ export class Controller {
     );
     // Renderizzo i filtri
     this.model.state.filters.push(skillFilter);
-    this.skillView.generateActiveFilters(this.model.state.filters);
-    this.skillView.addHandlerRender(this.clearFilter);
+
+    this.skillView.generateActiveFilter(skillFilter, this.clearFilter);
+
     // REFACTOR Renderizzo i nuovi jobs, ma solo quelli fra i filtrati
     this.jobView.clear();
     this.generateJobs(this.model.state.filteredJobs);
   }
 
-  clearFilter() {
-    console.log("clear me");
+  clearFilter(selectedFilter) {
+    console.log(selectedFilter);
   }
 
   async initApp() {
