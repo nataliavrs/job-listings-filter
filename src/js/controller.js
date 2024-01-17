@@ -9,7 +9,7 @@ export class Controller {
   generateJobs(jobs) {
     jobs.forEach((job) => {
       this.jobView.render(job);
-      this.skillView.generateJobFilters(job.skills, job.id, this.clearFilter);
+      this.skillView.generateJobFilters(job.skills, job.id);
     });
     this.jobView.addHandlerRender(this.filterJobs.bind(this));
   }
@@ -25,13 +25,17 @@ export class Controller {
     const jobs = this.model.state.filters.length
       ? this.model.state.filteredJobs
       : this.model.state.jobs;
+
     this.model.state.filteredJobs = jobs.filter((job) =>
       job.skills.some((skill) => skill === skillFilter)
     );
-    // Renderizzo i filtri
-    this.model.state.filters.push(skillFilter);
 
-    this.skillView.generateActiveFilter(skillFilter, this.clearFilter);
+    // Renderizzo il nuovo filtro
+    this.model.state.filters.push(skillFilter);
+    this.skillView.generateActiveFilter(
+      skillFilter,
+      this.clearFilter.bind(this)
+    );
 
     // REFACTOR Renderizzo i nuovi jobs, ma solo quelli fra i filtrati
     this.jobView.clear();
@@ -39,7 +43,21 @@ export class Controller {
   }
 
   clearFilter(selectedFilter) {
-    console.log(selectedFilter);
+    this.model.state.filters = this.model.state.filters.filter(
+      (f) => f !== selectedFilter
+    );
+    console.log(this.model.state.filters);
+    const jobs = this.model.state.jobs.filter((job) =>
+      job.skills.some((skill) =>
+        // BUG non funziona perché deve includere tutti i filtri attivi e non soltanto uno dei filtri
+        this.model.state.filters.includes(skill)
+      )
+    );
+
+    const jobsToShow = jobs.length ? jobs : this.model.state.jobs;
+    this.jobView.clear();
+    this.generateJobs(jobsToShow);
+    this.model.state.filteredJobs = jobsToShow;
   }
 
   async initApp() {
