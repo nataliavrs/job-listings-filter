@@ -43,21 +43,24 @@ export class Controller {
   }
 
   clearFilter(selectedFilter) {
-    this.model.state.filters = this.model.state.filters.filter(
-      (f) => f !== selectedFilter
-    );
-    console.log(this.model.state.filters);
+    const filters = this.model.state.filters;
+
+    const newFilters = filters.filter((f) => f !== selectedFilter);
+    this.model.state.filters = newFilters;
+
     const jobs = this.model.state.jobs.filter((job) =>
-      job.skills.some((skill) =>
-        // BUG non funziona perché deve includere tutti i filtri attivi e non soltanto uno dei filtri
-        this.model.state.filters.includes(skill)
-      )
+      filters.every((f) => job.skills.includes(f))
     );
 
     const jobsToShow = jobs.length ? jobs : this.model.state.jobs;
     this.jobView.clear();
     this.generateJobs(jobsToShow);
     this.model.state.filteredJobs = jobsToShow;
+
+    // this.skillView.clearFilter();
+    // this.model.state.filters.map((f) =>
+    //   this.skillView.generateActiveFilter(f, this.clearFilter.bind(this))
+    // );
   }
 
   async initApp() {
