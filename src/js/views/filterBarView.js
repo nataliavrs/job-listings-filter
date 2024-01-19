@@ -27,6 +27,13 @@ class FilterView extends View {
     const filterBar = document.querySelector(".filter-bar");
     filterBar.classList.remove("hide");
   }
+
+  addHandlerRender(handler) {
+    const clearBtn = document.querySelector(".filter-bar__clear-btn");
+    clearBtn.addEventListener("click", (e) => {
+      handler();
+    });
+  }
 }
 
 export default new FilterView();

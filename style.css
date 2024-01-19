@@ -82,3 +82,7 @@ main {
   align-items: center;
   font-size: 1.2rem;
 }
+
+.filter-bar__clear-btn {
+  cursor: pointer;
+}

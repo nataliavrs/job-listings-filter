@@ -41,7 +41,7 @@ export class Controller {
     this.generateJobs(this.model.state.filteredJobs);
   }
 
-  clearFilter(selectedFilter) {
+  async clearFilter(selectedFilter) {
     // Tolgo il filtro cancellato dai filtri nello state
     this.model.state.filters = this.model.state.filters.filter(
       (f) => f !== selectedFilter
@@ -51,6 +51,7 @@ export class Controller {
     // Se non ci sono più filtri faccio vedere tutti i jobs e nascondo la barra dei filtri
     if (!this.model.state.filters.length) {
       this.filterBarView.hideFilterBar();
+      await this.model.getJobs();
       this.generateJobs(this.model.state.jobs);
       return;
     }
@@ -68,9 +69,18 @@ export class Controller {
     this.model.state.filteredJobs = jobsWithFilters;
   }
 
+  async clearAll() {
+    this.filterBarView.hideFilterBar();
+    this.filterBarView.clearFilters();
+    this.model.state.filters = [];
+    await this.model.getJobs();
+    this.generateJobs(this.model.state.jobs);
+  }
+
   async initApp() {
     await this.model.getJobs();
     this.generateJobs(this.model.state.jobs);
     this.filterBarView.render();
+    this.filterBarView.addHandlerRender(this.clearAll.bind(this));
   }
 }
