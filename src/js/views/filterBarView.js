@@ -5,12 +5,27 @@ class FilterView extends View {
 
   generateMarkup() {
     return `
-        <div class="filter-bar">
+        <div class="filter-bar hide">
           <div class="filter-bar__filters">
           </div>
           <div class="filter-bar__clear-btn">Clear</div>
         </div>
     `;
+  }
+
+  clearFilters() {
+    const filtersParent = document.querySelector(".filter-bar__filters");
+    filtersParent.innerHTML = "";
+  }
+
+  hideFilterBar() {
+    const filterBar = document.querySelector(".filter-bar");
+    filterBar.classList.add("hide");
+  }
+
+  showFilterBar() {
+    const filterBar = document.querySelector(".filter-bar");
+    filterBar.classList.remove("hide");
   }
 }
 

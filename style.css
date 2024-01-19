@@ -3,6 +3,10 @@
   margin: 0;
 }
 
+.hide {
+  display: none !important;
+}
+
 body {
   font-family: "League Spartan", sans-serif;
   font-family: "Rubik", sans-serif;
