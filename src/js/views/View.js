@@ -5,7 +5,6 @@ export class View {
   }
 
   clear() {
-    console.log(this);
     this._parent.innerHTML = "";
   }
 }

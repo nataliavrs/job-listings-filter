@@ -26,8 +26,6 @@ class SkillView extends View {
   generateJobFilters(skills, jobId) {
     const parent = document.querySelector(`.job__skills[data-id="${jobId}"]`);
 
-    console.log(this._parent);
-
     parent.innerHTML = skills
       .map((skill) => {
         return `

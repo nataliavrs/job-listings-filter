@@ -43,24 +43,25 @@ export class Controller {
   }
 
   clearFilter(selectedFilter) {
-    const filters = this.model.state.filters;
-
-    const newFilters = filters.filter((f) => f !== selectedFilter);
-    this.model.state.filters = newFilters;
-
-    const jobs = this.model.state.jobs.filter((job) =>
-      filters.every((f) => job.skills.includes(f))
+    // Tolgo il filtro cancellato dai filtri nello state
+    this.model.state.filters = this.model.state.filters.filter(
+      (f) => f !== selectedFilter
+    );
+    // Se non ci sono più filtri faccio vedere tutti i jobs
+    if (!this.model.state.filters.length) {
+      this.jobView.clear();
+      this.generateJobs(this.model.state.jobs);
+      return;
+    }
+    // Se ci sono filtri, filtro i jobs, voglio solo quelli in cui tutti i filtri siano presenti nelle sue skills
+    const jobsWithFilters = this.model.state.jobs.filter((job) =>
+      this.model.state.filters.every((f) => job.skills.includes(f))
     );
 
-    const jobsToShow = jobs.length ? jobs : this.model.state.jobs;
     this.jobView.clear();
-    this.generateJobs(jobsToShow);
-    this.model.state.filteredJobs = jobsToShow;
-
-    // this.skillView.clearFilter();
-    // this.model.state.filters.map((f) =>
-    //   this.skillView.generateActiveFilter(f, this.clearFilter.bind(this))
-    // );
+    this.generateJobs(jobsWithFilters);
+    // Aggiorno lo state dei jobs filtrati
+    this.model.state.filteredJobs = jobsWithFilters;
   }
 
   async initApp() {
