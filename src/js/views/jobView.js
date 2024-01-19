@@ -1,7 +1,7 @@
 import { View } from "./View.js";
 
 class JobView extends View {
-  _parent = document.querySelector(".main");
+  _parent = document.querySelector(".main__jobs");
 
   generateMarkup(job) {
     return `<div class="job">

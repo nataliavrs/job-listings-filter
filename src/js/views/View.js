@@ -4,6 +4,11 @@ export class View {
     this._parent.insertAdjacentHTML("beforeEnd", markup);
   }
 
+  renderError() {
+    document.querySelector(".main__jobs").innerHTML = "";
+    document.querySelector(".main__error").classList.remove("hide");
+  }
+
   clear() {
     this._parent.innerHTML = "";
   }

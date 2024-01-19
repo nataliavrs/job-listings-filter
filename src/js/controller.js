@@ -50,10 +50,16 @@ export class Controller {
     this.filterBarView.clearFilters();
     // Se non ci sono più filtri faccio vedere tutti i jobs e nascondo la barra dei filtri
     if (!this.model.state.filters.length) {
-      this.filterBarView.hideFilterBar();
-      await this.model.getJobs();
-      this.generateJobs(this.model.state.jobs);
-      return;
+      try {
+        this.filterBarView.hideFilterBar();
+        await this.model.getJobs();
+        this.generateJobs(this.model.state.jobs);
+        throw error;
+        return;
+      } catch (error) {
+        console.error("Error retrieving jobs while clearing filter:");
+        this.jobView.renderError();
+      }
     }
     // Tolgo il filtro cancellato dall'UI renderizzando quelli rimasti
     this.model.state.filters.map((f) =>
@@ -70,17 +76,29 @@ export class Controller {
   }
 
   async clearAll() {
-    this.filterBarView.hideFilterBar();
-    this.filterBarView.clearFilters();
-    this.model.state.filters = [];
-    await this.model.getJobs();
-    this.generateJobs(this.model.state.jobs);
+    try {
+      this.filterBarView.hideFilterBar();
+      this.filterBarView.clearFilters();
+      this.model.state.filters = [];
+      await this.model.getJobs();
+      this.generateJobs(this.model.state.jobs);
+      // throw error;
+    } catch (error) {
+      console.error("Error retrieving jobs while deleting all filters:");
+      this.jobView.renderError();
+    }
   }
 
   async initApp() {
-    await this.model.getJobs();
-    this.generateJobs(this.model.state.jobs);
-    this.filterBarView.render();
-    this.filterBarView.addHandlerRender(this.clearAll.bind(this));
+    try {
+      await this.model.getJobs();
+      this.generateJobs(this.model.state.jobs);
+      this.filterBarView.render();
+      this.filterBarView.addHandlerRender(this.clearAll.bind(this));
+      // throw error;
+    } catch (error) {
+      console.error("Error retrieving jobs while initializing app:");
+      this.jobView.renderError();
+    }
   }
 }

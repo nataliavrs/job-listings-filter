@@ -8,8 +8,13 @@ class Model {
   };
 
   async fetchData(url) {
-    const response = await fetch(url);
-    const data = await response.json();
+    const res = await fetch(url);
+
+    if (!res.ok) {
+      throw new Error(`${res.statusText} ${res.status}`);
+    }
+
+    const data = await res.json();
     return data;
   }
 
@@ -22,7 +27,7 @@ class Model {
       }));
       this.state.jobs = mappedJobs;
     } catch (error) {
-      alert("Error retrieving jobs", error);
+      throw error;
     }
   }
 }
