@@ -52,10 +52,9 @@ export class Controller {
       // Se non ci sono più filtri faccio vedere tutti i jobs e nascondo la barra dei filtri
       if (!this.model.state.filters.length) {
         this.filterBarView.hideFilterBar();
-        await this.model.getJobs();
-        // throw error;
-        this.generateJobs(this.model.state.jobs);
+        await this.getNewJobsAndRender();
         return;
+        // throw error;
       }
       // Tolgo il filtro cancellato dall'UI renderizzando quelli rimasti
       this.model.state.filters.map((f) =>
@@ -70,34 +69,44 @@ export class Controller {
       // Aggiorno lo state dei jobs filtrati
       this.model.state.filteredJobs = jobsWithFilters;
     } catch (error) {
-      console.error("Error retrieving jobs while clearing filter:");
+      console.error("Error retrieving jobs while clearing filter:", error);
       this.jobView.renderError();
     }
   }
 
-  async clearAll() {
+  async getNewJobsAndRender() {
+    try {
+      this.jobView.renderSpinner();
+      await this.model.getJobs();
+      this.jobView.hideSpinner();
+      this.generateJobs(this.model.state.jobs);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async clearAllFilters() {
     try {
       this.filterBarView.hideFilterBar();
+      // Pulisco i filtri
       this.filterBarView.clearFilters();
       this.model.state.filters = [];
-      await this.model.getJobs();
-      this.generateJobs(this.model.state.jobs);
+      await this.getNewJobsAndRender();
       // throw error;
     } catch (error) {
-      console.error("Error retrieving jobs while deleting all filters:");
+      console.error("Error retrieving jobs while deleting all filters:", error);
       this.jobView.renderError();
     }
   }
 
   async initApp() {
     try {
-      await this.model.getJobs();
-      this.generateJobs(this.model.state.jobs);
+      await this.getNewJobsAndRender();
       this.filterBarView.render();
-      this.filterBarView.addHandlerRender(this.clearAll.bind(this));
+      this.filterBarView.addHandlerRender(this.clearAllFilters.bind(this));
       // throw error;
     } catch (error) {
-      console.error("Error retrieving jobs while initializing app:");
+      console.error("Error retrieving jobs while initializing app:", error);
       this.jobView.renderError();
     }
   }

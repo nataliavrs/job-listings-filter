@@ -14,15 +14,20 @@ body {
 
 .main__jobs {
   display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
+}
+
+.loading {
+  justify-content: center;
+  min-height: 100vh;
 }
 
 .main__error {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: rgb(232, 85, 85);
+  color: hsl(180, 29%, 50%);
   height: 100vh;
 }
 
@@ -97,4 +102,28 @@ body {
 
 .filter-bar__clear-btn {
   cursor: pointer;
+}
+
+/* Loading spinner */
+.loader {
+  width: 48px;
+  height: 48px;
+  background: #fff;
+  border-radius: 50%;
+  position: relative;
+  animation: skLinRotate 1s ease-in-out infinite alternate;
+}
+.loader:after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  border: 5px solid transparent;
+  border-top-color: hsl(180, 29%, 50%);
+}
+@keyframes skLinRotate {
+  95%,
+  100% {
+    transform: rotate(840deg);
+  }
 }

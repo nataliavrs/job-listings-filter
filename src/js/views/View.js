@@ -6,11 +6,20 @@ export class View {
 
   renderError() {
     this._parent.innerHTML = "";
-    // document.querySelector(".main__jobs").innerHTML = "";
     document.querySelector(".main__error").classList.remove("hide");
   }
 
   clear() {
     this._parent.innerHTML = "";
+  }
+
+  renderSpinner() {
+    const markup = `
+      <h4>Loading new jobs...</h4>
+      <span class="loader"></span>
+    `;
+    this.clear();
+    this._parent.classList.add("loading");
+    this._parent.insertAdjacentHTML("beforeEnd", markup);
   }
 }

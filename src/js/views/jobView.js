@@ -51,6 +51,10 @@ class JobView extends View {
       })
     );
   }
+
+  hideSpinner() {
+    this._parent.classList.remove("loading");
+  }
 }
 
 export default new JobView();

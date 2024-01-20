@@ -8,14 +8,16 @@ class Model {
   };
 
   async fetchData(url) {
-    const res = await fetch(url);
-
-    if (!res.ok) {
-      throw new Error(`${res.statusText} ${res.status}`);
-    }
-
-    const data = await res.json();
-    return data;
+    return new Promise((resolve) => {
+      setTimeout(async () => {
+        const res = await fetch(url);
+        if (!res.ok) {
+          throw new Error(`${res.statusText} ${res.status}`);
+        }
+        const data = await res.json();
+        resolve(data);
+      }, 1000);
+    });
   }
 
   async getJobs() {
