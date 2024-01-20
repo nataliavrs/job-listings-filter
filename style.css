@@ -3,10 +3,6 @@
   margin: 0;
 }
 
-.hide {
-  display: none !important;
-}
-
 body {
   font-family: "League Spartan", sans-serif;
   font-family: "Rubik", sans-serif;
@@ -35,40 +31,35 @@ header {
   min-width: 80%;
 }
 
+.filter-bar__filters > .skill > .skill__title {
+  display: inline;
+}
+
+.skill__remove-btn {
+  display: inline;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.filter-bar,
+.filter-bar__filters {
+  display: flex;
+}
+
+.filter-bar__clear-btn {
+  cursor: pointer;
+  font-weight: bold;
+  color: #5ba4a4;
+}
+
+.filter-bar__clear-btn:hover {
+  text-decoration: underline;
+}
+
 .main__jobs {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.loading {
-  justify-content: center;
-  min-height: 100vh;
-}
-
-.main__error {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: hsl(180, 29%, 50%);
-  height: 100vh;
-}
-
-.error {
-  text-align: center;
-}
-
-.nothing {
-  /* - Desaturated Dark Cyan: hsl(180, 29%, 50%) */
-  color: hsl(180, 29%, 50%);
-  /* - Light Grayish Cyan (Background): hsl(180, 52%, 96%) */
-  color: hsl(180, 52%, 96%);
-  /* - Light Grayish Cyan (Filter Tablets): hsl(180, 31%, 95%) */
-  color: hsl(180, 31%, 95%);
-  /* - Dark Grayish Cyan: hsl(180, 8%, 52%) */
-  color: hsl(180, 8%, 52%);
-  /* - Very Dark Grayish Cyan: hsl(180, 14%, 20%) */
-  color: hsl(180, 14%, 20%);
 }
 
 .job {
@@ -109,14 +100,17 @@ header {
   align-self: center;
 }
 
-.job__position,
+.job__position {
+  font-weight: bolder;
+}
+
 .job__company {
   color: #5ba4a4;
   font-weight: bolder;
 }
 
 .job__secondary-details {
-  color: hsl(180, 14%, 20%);
+  color: hsl(180, 8%, 52%);
   margin-top: 15px;
 }
 
@@ -174,32 +168,27 @@ header {
   background-color: black;
 }
 
-.filter-bar__filters > .skill > .skill__title {
-  display: inline;
-}
-
-.skill__remove-btn {
-  display: inline;
-  padding: 4px;
-  cursor: pointer;
-}
-
-.filter-bar,
-.filter-bar__filters {
+.main__error {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  color: hsl(180, 29%, 50%);
+  height: 100vh;
 }
 
-.filter-bar__clear-btn {
-  cursor: pointer;
-  font-weight: bold;
-  color: #5ba4a4;
+.error {
+  text-align: center;
 }
 
-.filter-bar__clear-btn:hover {
-  text-decoration: underline;
+.loading {
+  justify-content: center;
+  min-height: 70vh;
 }
 
-/* Loading spinner */
+.hide {
+  display: none !important;
+}
+
 .loader {
   width: 48px;
   height: 48px;
@@ -222,6 +211,7 @@ header {
   border: 5px solid transparent;
   border-top-color: hsl(180, 29%, 50%);
 }
+
 @keyframes skLinRotate {
   95%,
   100% {
