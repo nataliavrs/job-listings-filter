@@ -42,37 +42,37 @@ export class Controller {
   }
 
   async clearFilter(selectedFilter) {
-    // Tolgo il filtro cancellato dai filtri nello state
-    this.model.state.filters = this.model.state.filters.filter(
-      (f) => f !== selectedFilter
-    );
-    // Pulisco i filtri
-    this.filterBarView.clearFilters();
-    // Se non ci sono più filtri faccio vedere tutti i jobs e nascondo la barra dei filtri
-    if (!this.model.state.filters.length) {
-      try {
+    try {
+      // Tolgo il filtro cancellato dai filtri nello state
+      this.model.state.filters = this.model.state.filters.filter(
+        (f) => f !== selectedFilter
+      );
+      // Pulisco i filtri
+      this.filterBarView.clearFilters();
+      // Se non ci sono più filtri faccio vedere tutti i jobs e nascondo la barra dei filtri
+      if (!this.model.state.filters.length) {
         this.filterBarView.hideFilterBar();
         await this.model.getJobs();
+        // throw error;
         this.generateJobs(this.model.state.jobs);
-        throw error;
         return;
-      } catch (error) {
-        console.error("Error retrieving jobs while clearing filter:");
-        this.jobView.renderError();
       }
-    }
-    // Tolgo il filtro cancellato dall'UI renderizzando quelli rimasti
-    this.model.state.filters.map((f) =>
-      this.skillView.generateActiveFilter(f, this.clearFilter.bind(this))
-    );
-    // Se ci sono filtri, filtro i jobs, voglio solo quelli in cui tutti i filtri siano presenti nelle sue skills
-    const jobsWithFilters = this.model.state.jobs.filter((job) =>
-      this.model.state.filters.every((f) => job.skills.includes(f))
-    );
+      // Tolgo il filtro cancellato dall'UI renderizzando quelli rimasti
+      this.model.state.filters.map((f) =>
+        this.skillView.generateActiveFilter(f, this.clearFilter.bind(this))
+      );
+      // Se ci sono filtri, filtro i jobs, voglio solo quelli in cui tutti i filtri siano presenti nelle sue skills
+      const jobsWithFilters = this.model.state.jobs.filter((job) =>
+        this.model.state.filters.every((f) => job.skills.includes(f))
+      );
 
-    this.generateJobs(jobsWithFilters);
-    // Aggiorno lo state dei jobs filtrati
-    this.model.state.filteredJobs = jobsWithFilters;
+      this.generateJobs(jobsWithFilters);
+      // Aggiorno lo state dei jobs filtrati
+      this.model.state.filteredJobs = jobsWithFilters;
+    } catch (error) {
+      console.error("Error retrieving jobs while clearing filter:");
+      this.jobView.renderError();
+    }
   }
 
   async clearAll() {

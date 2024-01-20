@@ -5,7 +5,8 @@ export class View {
   }
 
   renderError() {
-    document.querySelector(".main__jobs").innerHTML = "";
+    this._parent.innerHTML = "";
+    // document.querySelector(".main__jobs").innerHTML = "";
     document.querySelector(".main__error").classList.remove("hide");
   }
 
