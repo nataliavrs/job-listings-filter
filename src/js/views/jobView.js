@@ -12,18 +12,18 @@ class JobView extends View {
 
       <div class="job__details">
         <div class="job__main-details">
-          <div class="job__company">
-            ${job?.company}
+            <span class="job__company">${job?.company}</span>
             <div class="job__company-tags">
-              <div class="job__tag--new">${job?.new ? "NEW" : ""}</div>
-              <div class="job__tag--featured">${
-                job?.featured ? "FEATURED" : ""
-              }</div>
-          </div>
+            ${job?.new ? '<span class="job__tag--new">NEW!</span>' : ""}
+            ${
+              job?.featured
+                ? '<span class="job__tag--featured">FEATURED</span>'
+                : ""
+            }
           </div>
         </div>
 
-        <div class="job__position">${job?.position}</div>
+        <span class="job__position">${job?.position}</span>
 
         <div class="job__secondary-details">
           <span class="details__postedAt">${job?.postedAt}</span>
@@ -33,8 +33,7 @@ class JobView extends View {
       </div>
     </div>
 
-    <div class="job__skills" data-id=${job?.id}></div>
-    
+    <div class="job__skills" data-id=${job?.id}></div>    
   </div>`;
   }
 

@@ -18,6 +18,9 @@ export class Controller {
   filterJobs(skillFilter) {
     // Se filtro già esiste non ne aggiungo altro ripetuto e non rifaccio filtro
     if (this.model.state.filters.includes(skillFilter)) return;
+
+    this.jobView.renderSpinner();
+
     // Renderizzo la barra di filtri se non l'ho già fatto
     if (!this.model.state.filters.length) {
       this.filterBarView.showFilterBar();
@@ -39,6 +42,7 @@ export class Controller {
     );
 
     this.generateJobs(this.model.state.filteredJobs);
+    this.jobView.hideSpinner();
   }
 
   async clearFilter(selectedFilter) {

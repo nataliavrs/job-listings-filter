@@ -15,7 +15,7 @@ export class View {
 
   renderSpinner() {
     const markup = `
-      <h4>Loading new jobs...</h4>
+      <h4 class="loader__message">Loading new jobs...</h4>
       <span class="loader"></span>
     `;
     this.clear();

@@ -10,6 +10,29 @@
 body {
   font-family: "League Spartan", sans-serif;
   font-family: "Rubik", sans-serif;
+  background-color: hsl(180, 52%, 96%);
+}
+
+header {
+  background-image: url("src/images/bg-header-desktop.svg");
+  min-height: 20vh;
+  background-color: hsl(180, 29%, 50%);
+  position: relative;
+  margin-bottom: 50px;
+  background-repeat: no-repeat;
+}
+
+.filter-bar {
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 10px 30px;
+  border-radius: 5px;
+  position: absolute;
+  left: 10%;
+  top: 15vh;
+  z-index: 100;
+  min-width: 80%;
 }
 
 .main__jobs {
@@ -35,15 +58,33 @@ body {
   text-align: center;
 }
 
+.nothing {
+  /* - Desaturated Dark Cyan: hsl(180, 29%, 50%) */
+  color: hsl(180, 29%, 50%);
+  /* - Light Grayish Cyan (Background): hsl(180, 52%, 96%) */
+  color: hsl(180, 52%, 96%);
+  /* - Light Grayish Cyan (Filter Tablets): hsl(180, 31%, 95%) */
+  color: hsl(180, 31%, 95%);
+  /* - Dark Grayish Cyan: hsl(180, 8%, 52%) */
+  color: hsl(180, 8%, 52%);
+  /* - Very Dark Grayish Cyan: hsl(180, 14%, 20%) */
+  color: hsl(180, 14%, 20%);
+}
+
 .job {
-  background-color: lightgray;
+  background-color: white;
   margin: 0.7rem 0;
-  border-radius: 0.2rem;
+  border-radius: 0.3rem;
   width: 80%;
   padding: 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0 5px 20px 3px #74adad64;
+}
+
+.job:hover {
+  margin-left: solid 2px #5ba4a4;
 }
 
 .job__logo {
@@ -51,6 +92,7 @@ body {
 }
 
 .job__logo img {
+  border-radius: 100px;
   height: 88px;
 }
 
@@ -59,12 +101,28 @@ body {
   align-items: center;
 }
 
+.job__main-details {
+  margin-bottom: 15px;
+}
+
 .job__details {
   align-self: center;
 }
 
+.job__position,
+.job__company {
+  color: #5ba4a4;
+  font-weight: bolder;
+}
+
 .job__secondary-details {
-  margin-top: 1rem;
+  color: hsl(180, 14%, 20%);
+  margin-top: 15px;
+}
+
+.job__secondary-details > span:not(:last-of-type)::after {
+  content: "•";
+  margin: 10px;
 }
 
 .job__skills {
@@ -73,11 +131,47 @@ body {
 
 .skill {
   margin: 0.5rem;
+  background-color: hsla(180, 46%, 56%, 0.3);
+  border-radius: 5px;
+  padding: 5px;
+  font-weight: bolder;
+  color: #5ba4a4;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.skill:hover {
+  background-color: #5ba4a4;
+  color: white;
 }
 
 .job__skills > .skill > .skill__title {
   cursor: pointer;
   display: inline;
+}
+
+.job__company {
+  margin-right: 10px;
+}
+
+.job__company-tags {
+  display: inline;
+}
+
+.job__company-tags > span {
+  color: #fff;
+  font-weight: 500;
+  border-radius: 12px;
+  padding: 5px;
+  font-size: 0.8rem;
+  margin-left: 5px;
+}
+
+.job__tag--new {
+  background-color: #5ba4a4;
+}
+
+.job__tag--featured {
+  background-color: black;
 }
 
 .filter-bar__filters > .skill > .skill__title {
@@ -86,6 +180,7 @@ body {
 
 .skill__remove-btn {
   display: inline;
+  padding: 4px;
   cursor: pointer;
 }
 
@@ -94,14 +189,14 @@ body {
   display: flex;
 }
 
-.filter-bar {
-  justify-content: space-around;
-  align-items: center;
-  font-size: 1.2rem;
-}
-
 .filter-bar__clear-btn {
   cursor: pointer;
+  font-weight: bold;
+  color: #5ba4a4;
+}
+
+.filter-bar__clear-btn:hover {
+  text-decoration: underline;
 }
 
 /* Loading spinner */
@@ -112,7 +207,13 @@ body {
   border-radius: 50%;
   position: relative;
   animation: skLinRotate 1s ease-in-out infinite alternate;
+  margin: 10px;
 }
+
+.loader__message {
+  color: #5ba4a4;
+}
+
 .loader:after {
   content: "";
   position: absolute;
