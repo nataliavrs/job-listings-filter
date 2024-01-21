@@ -9,10 +9,6 @@ export class View {
     document.querySelector(".main__error").classList.remove("hide");
   }
 
-  clear() {
-    this._parent.innerHTML = "";
-  }
-
   renderSpinner() {
     const markup = `
       <h4 class="loader__message">Loading new jobs...</h4>
@@ -21,5 +17,9 @@ export class View {
     this.clear();
     this._parent.classList.add("loading");
     this._parent.insertAdjacentHTML("beforeEnd", markup);
+  }
+
+  clear() {
+    this._parent.innerHTML = "";
   }
 }

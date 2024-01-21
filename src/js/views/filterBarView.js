@@ -1,4 +1,5 @@
 import { View } from "./View.js";
+
 class FilterView extends View {
   _parent = document.querySelector(".header");
   _data;

@@ -1,4 +1,5 @@
 import { View } from "./View.js";
+
 class SkillView extends View {
   _data;
 
@@ -7,8 +8,8 @@ class SkillView extends View {
     const skillNode = document.createElement("div");
     skillNode.className = "skill";
     skillNode.innerHTML = `
-        <div class="skill__title">${filter}</div>
-        <div class="skill__remove-btn">X</div>                                   
+      <div class="skill__title">${filter}</div>
+      <div class="skill__remove-btn">X</div>                                   
     `;
     skillNode.addEventListener("click", (e) => {
       if (e.target.classList.contains("skill__remove-btn")) {
@@ -25,10 +26,10 @@ class SkillView extends View {
     parent.innerHTML = skills
       .map((skill) => {
         return `
-                <div class="skill">
-                    <div class="skill__title">${skill}</div>
-                </div>
-              `;
+          <div class="skill">
+              <div class="skill__title">${skill}</div>
+          </div>
+        `;
       })
       .join("");
   }
