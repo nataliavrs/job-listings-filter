@@ -220,19 +220,14 @@ header {
     transform: rotate(840deg);
   }
 }
-
 @media only screen and (max-width: 1064px) {
   .job {
     display: flex;
     flex-direction: column;
     width: 60%;
   }
-  .job__info {
-    /* width: 100%; */
-  }
   .job__skills {
     margin-top: 10px;
-    /* width: 100%; */
   }
 }
 
@@ -242,48 +237,55 @@ header {
     flex-direction: column;
     width: 85%;
   }
-  .job__info {
-  }
-  .job__skills {
-  }
   .skill {
     display: inline;
   }
 }
 
-@media only screen and (max-width: 673px) {
+@media only screen and (max-width: 580px) {
   .job {
-    width: 85%;
-    /* height: 280px; */
+    width: 90%;
+    height: 230px;
   }
 
-  .job__info {
+  .job-info {
+    margin-bottom: 10px;
+  }
+
+  .job__company {
+    margin: 0;
+  }
+
+  .job__logo {
+    margin: 0 10px 0 0;
   }
 
   .job__skills {
-    display: inline;
-    margin-top: 10px;
+    margin-top: 0;
   }
 
   .skill {
-    margin: 10px;
+    background: none;
+  }
+
+  .job__company-tags {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 5px;
+  }
+
+  .job__company-tags > span {
+    margin: 0 2px 0 2px;
   }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 400px) {
   .job {
-    width: 85%;
-    height: 280px;
-  }
-
-  .job__info {
+    width: 90%;
+    min-height: 280px;
   }
 
   .job__skills {
     display: inline;
-  }
-
-  .skill {
-    margin: 10px;
   }
 }
