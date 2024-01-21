@@ -241,3 +241,60 @@ header {
     display: inline;
   }
 }
+
+@media only screen and (max-width: 580px) {
+  .job {
+    width: 90%;
+    height: 230px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .job-info {
+    margin-bottom: 10px;
+  }
+
+  .skill {
+    background: none;
+  }
+
+  .job__company {
+    margin: 0;
+  }
+
+  .job__logo {
+    margin: 0 10px 0 0;
+  }
+
+  .job__skills {
+    margin-top: 0;
+    display: inline;
+  }
+
+  .job__company-tags {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 5px;
+  }
+
+  .job__company-tags > span {
+    margin: 0 2px 0 2px;
+  }
+}
+
+@media only screen and (max-width: 470px) {
+  .job {
+    width: 90%;
+    height: 260px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .skill {
+    background: none;
+  }
+
+  .job__skills {
+    display: inline;
+  }
+}
